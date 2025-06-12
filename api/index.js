@@ -6,6 +6,7 @@ import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors';
 dotenv.config();
 
 
@@ -28,6 +29,13 @@ app.use(cookieParser());
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
 });
+ 
+
+//added later cors 
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://mern-real-estate-beta.vercel.app'],
+  credentials: true,
+}));
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
@@ -43,6 +51,9 @@ app.use('/api/listing', listingRouter);
 app.get("/", (req, res) => {
   res.send("✅ Backend is working!");
 });
+
+
+
 
 
 
